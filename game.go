@@ -30,6 +30,22 @@ func (d *deck) draw(num int) []string {
 
 var cards = []string{"duke", "duke", "duke", "captain", "captain", "captain", "ambassador", "ambassador", "ambassador", "assassin", "assassin", "assassin", "contessa", "contessa", "contessa"}
 
+var actionToCharMap = map[string]string{
+	"tax":         "duke",
+	"assassinate": "assassin",
+	"steal":       "captain",
+	"exchange":    "ambassador",
+	"income":      "any",
+	"foreignAid":  "any",
+	"coup":        "any",
+}
+var blockActionToCharMap = map[string]string{
+	"foreignAid":      "duke",
+	"assassination":   "contessa",
+	"stealCaptain":    "captain",
+	"stealAmbassador": "ambassador",
+}
+
 type player struct {
 	cards []string
 	coins int
@@ -48,6 +64,15 @@ func (p *player) removeCard(index int) []string {
 func (p *player) addCard(newCard string) []string {
 	p.cards = append(p.cards, newCard)
 	return p.cards
+}
+
+func (p *player) checkTruth(character string) bool {
+	for _, char := range p.cards {
+		if char == character {
+			return true
+		}
+	}
+	return false
 }
 
 type game struct {
@@ -78,4 +103,6 @@ func (g *game) passTurn() int {
 func main() {
 	g := game{numPlayers: 4}
 	g.init()
+	fmt.Println(g.players)
+	fmt.Println(g.players[0].checkTruth("contessa"))
 }
