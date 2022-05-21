@@ -78,17 +78,4 @@ func (g *game) passTurn() int {
 func main() {
 	g := game{numPlayers: 4}
 	g.init()
-	// fmt.Println(g.players[5])
-	g.passTurn()
-	fmt.Println("turnIndex: ", g.turnIndex)
-	g.passTurn()
-	fmt.Println("turnIndex: ", g.turnIndex)
-	g.passTurn()
-	fmt.Println("turnIndex: ", g.turnIndex)
-	g.passTurn()
-	fmt.Println("turnIndex: ", g.turnIndex)
-	g.passTurn()
-	fmt.Println("turnIndex: ", g.turnIndex)
-	g.passTurn()
-	fmt.Println("turnIndex: ", g.turnIndex)
 }
