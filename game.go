@@ -100,9 +100,15 @@ func (g *game) passTurn() int {
 	return newIndex
 }
 
+func (g *game) removePlayer(position int) {
+	g.players = append(g.players[:position], g.players[position+1:]...)
+}
+
 func main() {
 	g := game{numPlayers: 4}
 	g.init()
 	fmt.Println(g.players)
 	fmt.Println(g.players[0].checkTruth("contessa"))
+	g.removePlayer(1)
+	fmt.Println(g.players)
 }
